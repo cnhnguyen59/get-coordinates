@@ -1,5 +1,3 @@
-// ArcGIs API Key
-
 require([
     "esri/widgets/Sketch",
     "esri/Map",
@@ -7,6 +5,7 @@ require([
     "esri/views/MapView",
     "esri/geometry/support/webMercatorUtils"
   ], (Sketch, Map, GraphicsLayer, MapView, webMercatorUtils) => {
+
     const graphicsLayer = new GraphicsLayer();
 
     const map = new Map({
@@ -53,7 +52,6 @@ require([
         }
       });
 
-      // selected graphics can be deleted only when update event becomes active
       sketch.on("update", function(event) {
         if (event.state === "active") {
           sketch.delete();

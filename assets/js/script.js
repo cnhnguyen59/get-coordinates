@@ -35,21 +35,21 @@ require([
           var poly = webMercatorUtils.webMercatorToGeographic(event.graphic.geometry).toJSON()
           console.log(event.graphic.geometry.toJSON());
           console.log(webMercatorUtils.webMercatorToGeographic(event.graphic.geometry).toJSON());
-          console.log(poly.rings[0][0])
-          console.log(poly.rings[0][0][0])
-          console.log(poly.rings[0][0][1])
 
-        poly.rings[0].forEach(coord => {
-            console.log(coord)
-
-            if (coord != poly.rings[0][0]) {
-            coordList += `${coord}\n` 
+          if(poly.paths){
+            poly.paths[0].forEach(coord => {
+              coordList += `${coord}\n`
+            });
             console.log(coordList)
-            }
-          });
-          
-          console.log(coordList)
-          $('#coordinates').html(coordList) 
+            $('#coordinates').html(coordList) 
+          } else{
+            poly.rings[0].forEach(coord => {
+              if (coord != poly.rings[0][0]) {
+              coordList += `${coord}\n` 
+              }
+            });
+            $('#coordinates').html(coordList)
+          }
         }
       });
 
